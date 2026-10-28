@@ -1,6 +1,6 @@
 import { supabase } from './supabase'
 
-const editorUid = import.meta.env.VITE_OWUNOYE_EDITOR_UID
+const editorUid = import.meta.env.OWUNOYE_EDITOR_UID
 
 export async function isAuthorizedEditor() {
   const {
