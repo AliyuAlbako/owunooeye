@@ -8,6 +8,7 @@ import Category from './pages/Category'
 import Search from './pages/Search'
 import About from './pages/About'
 import Contact from './pages/Contact'
+
 import Login from './pages/admin/Login'
 import AdminGuard from './components/layout/AdminGuard'
 import Dashboard from './pages/admin/Dashboard'
@@ -30,15 +31,18 @@ export default function App() {
   return (
     <BrowserRouter>
       <Routes>
-     
-        <Route element={<AdminGuard />}>
+        {/* Login must remain outside AdminGuard */}
         <Route path="/admin/login" element={<Login />} />
-        <Route path="/admin/dashboard" element={<Dashboard />} />
-         <Route path="/admin/articles" element={<Articles />} />
+
+        {/* Protected admin pages */}
+        <Route element={<AdminGuard />}>
+          <Route path="/admin/dashboard" element={<Dashboard />} />
+          <Route path="/admin/articles" element={<Articles />} />
           <Route path="/admin/articles/new" element={<ArticleForm />} />
           <Route path="/admin/articles/:id/edit" element={<ArticleForm />} />
-
         </Route>
+
+        {/* Public website */}
         <Route element={<PublicLayout />}>
           <Route path="/" element={<Home />} />
           <Route path="/article/:slug" element={<Article />} />
